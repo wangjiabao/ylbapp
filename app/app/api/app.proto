@@ -1,0 +1,451 @@
+syntax = "proto3";
+
+package api;
+
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+option go_package = "/api;api";
+option java_multiple_files = true;
+option java_package = "api";
+
+service App {
+	rpc EthAuthorize (EthAuthorizeRequest) returns (EthAuthorizeReply) {
+		option (google.api.http) = {
+			post: "/api/app_server/eth_authorize"
+			body: "send_body"
+		};
+	};
+
+	rpc UserInfo (UserInfoRequest) returns (UserInfoReply) {
+		option (google.api.http) = {
+			get: "/api/app_server/user_info"
+		};
+	};
+
+	rpc RewardList (RewardListRequest) returns (RewardListReply) {
+		option (google.api.http) = {
+			get: "/api/app_server/reward_list"
+		};
+	};
+
+	rpc RecommendRewardList (RecommendRewardListRequest) returns (RecommendRewardListReply) {
+		option (google.api.http) = {
+			get: "/api/app_server/recommend_reward_list"
+		};
+	};
+
+	rpc FeeRewardList (FeeRewardListRequest) returns (FeeRewardListReply) {
+		option (google.api.http) = {
+			get: "/api/app_server/fee_reward_list"
+		};
+	};
+
+	rpc WithdrawList (WithdrawListRequest) returns (WithdrawListReply) {
+		option (google.api.http) = {
+			get: "/api/app_server/withdraw_list"
+		};
+	};
+
+	rpc RecommendList (RecommendListRequest) returns (RecommendListReply) {
+		option (google.api.http) = {
+			get: "/api/app_server/recommend_list"
+		};
+	};
+
+	rpc Withdraw (WithdrawRequest) returns (WithdrawReply) {
+		option (google.api.http) = {
+			post: "/api/app_server/withdraw"
+			body: "send_body"
+		};
+	};
+
+	rpc Deposit (DepositRequest) returns (DepositReply) {
+		option (google.api.http) = {
+			get: "/api/admin_dhb/deposit"
+		};
+	};
+//
+//	rpc AdminRewardList (AdminRewardListRequest) returns (AdminRewardListReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/reward_list"
+//		};
+//	};
+//
+//	rpc AdminUserList (AdminUserListRequest) returns (AdminUserListReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/user_list"
+//		};
+//	};
+//
+//	rpc AdminLocationList (AdminLocationListRequest) returns (AdminLocationListReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/location_list"
+//		};
+//	};
+//
+//	rpc AdminWithdrawList (AdminWithdrawListRequest) returns (AdminWithdrawListReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/withdraw_list"
+//		};
+//	};
+//
+	rpc AdminWithdraw (AdminWithdrawRequest) returns (AdminWithdrawReply) {
+		option (google.api.http) = {
+			get: "/api/admin_dhb/withdraw"
+		};
+	};
+
+	rpc AdminWithdrawEth (AdminWithdrawEthRequest) returns (AdminWithdrawEthReply) {
+		option (google.api.http) = {
+			get: "/api/admin_dhb/withdraw_eth"
+		};
+	};
+
+	rpc AdminFee (AdminFeeRequest) returns (AdminFeeReply) {
+		option (google.api.http) = {
+			get: "/api/admin_dhb/fee"
+		};
+	};
+//
+//	rpc AdminAll (AdminAllRequest) returns (AdminAllReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/all"
+//		};
+//	};
+//
+//	rpc AdminUserRecommend (AdminUserRecommendRequest) returns (AdminUserRecommendReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/user_recommend"
+//		};
+//	};
+//
+//	rpc AdminMonthRecommend (AdminMonthRecommendRequest) returns (AdminMonthRecommendReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/month_recommend"
+//		};
+//	};
+//
+//	rpc AdminConfig (AdminConfigRequest) returns (AdminConfigReply) {
+//		option (google.api.http) = {
+//			get: "/api/admin_dhb/config"
+//		};
+//	};
+//
+//	rpc AdminConfigUpdate (AdminConfigUpdateRequest) returns (AdminConfigUpdateReply) {
+//		option (google.api.http) = {
+//			post: "/api/admin_dhb/config_update"
+//			body: "send_body"
+//		};
+//	};
+
+}
+
+message EthAuthorizeRequest {
+	message SendBody{
+		string address = 1;
+		string code = 2;
+	}
+
+	SendBody send_body = 1;
+}
+
+message EthAuthorizeReply {
+	string token = 1;
+}
+
+
+message DepositRequest {
+}
+
+message DepositReply {
+}
+
+message UserInfoRequest {
+
+}
+
+message UserInfoReply {
+	string address = 1;
+	int64 level = 2;
+	string status = 3;
+	string amount = 4;
+	string balanceUsdt = 5;
+	string balanceDhb = 6;
+	string inviteUrl = 7;
+	string inviteUserAddress = 8;
+	int64 recommendNum = 9;
+	int64 recommendTeamNum = 10;
+	string total = 11;
+	int64 row = 12;
+	int64 col = 13;
+	string recommendTotal = 15;
+	string locationTotal = 16;
+	string usdt = 20;
+	string account = 22;
+	int64 recommendNumAll = 24;
+	int64 recommendTeamAll = 25;
+	string amountB = 27;
+	string recommendVipTotal = 28;
+	string feeDaily = 29;
+	string withdrawAmount = 30;
+	string userCount = 31;
+	string totalDeposit = 32;
+	string poolAmount = 34;
+	repeated List topUser = 33;
+	message List {
+		string account = 1;
+		string recommendReward = 2;
+		string reward = 3;
+	}
+	int64 locationCount = 35;
+	string todayReward = 36;
+	string recommendTop = 37;
+	string locationTotalCol = 38;
+	string locationTotalRow = 39;
+}
+
+message RewardListRequest {
+	string type = 1;
+}
+
+message RewardListReply {
+	repeated List rewards = 1;
+	message List {
+		string  created_at = 1;
+		string amount = 2;
+		string locationStatus = 3;
+		string type = 4;
+	}
+}
+
+message RecommendRewardListRequest {
+}
+
+message RecommendRewardListReply {
+	repeated List rewards = 1;
+	message List {
+		string created_at = 1;
+		string amount = 2;
+		string type = 4;
+		string reason = 3;
+	}
+}
+
+message FeeRewardListRequest {
+}
+
+message  FeeRewardListReply {
+	repeated List rewards = 1;
+	message List {
+		string created_at = 1;
+		string amount = 2;
+	}
+}
+
+message WithdrawListRequest {
+	string type = 1;
+}
+
+message WithdrawListReply {
+	repeated List withdraw = 1;
+	message List {
+		string  created_at = 1;
+		string amount = 2;
+		string type = 3;
+		string status=4;
+	}
+}
+
+message RecommendListRequest {
+	string type = 1;
+}
+
+message RecommendListReply {
+	repeated List recommends = 1;
+	message List {
+		string amount = 2;
+		string status = 3;
+	}
+}
+
+message WithdrawRequest {
+	message SendBody{
+		string type = 2;
+		string amount = 1;
+	}
+
+	SendBody send_body = 1;
+}
+
+message WithdrawReply {
+	string status = 1;
+}
+
+message AdminRewardListRequest {
+	int64 page = 1;
+	string address = 2;
+}
+
+message AdminRewardListReply {
+	repeated List rewards = 1;
+	message List {
+		string created_at = 1;
+		string amount = 2;
+		string type = 4;
+		string address = 5;
+		string reason = 6;
+	}
+	 int64 count = 2;
+}
+
+message AdminUserListRequest {
+	int64 page = 1;
+	string address = 2;
+}
+
+message AdminUserListReply {
+	repeated UserList users = 1;
+	message UserList {
+		int64 user_id = 8;
+		string created_at = 1;
+		string address = 2;
+		string balanceUsdt = 3;
+		string balanceDhb = 4;
+		int64 vip = 5;
+		int64 monthRecommend = 7;
+		int64 historyRecommend = 6;
+	}
+	int64 count = 2;
+}
+
+message AdminLocationListRequest {
+	int64 page = 1;
+	string address = 2;
+}
+
+message AdminLocationListReply {
+	repeated LocationList locations = 1;
+	message  LocationList {
+		string created_at = 1;
+		string address = 2;
+		int64 row = 3;
+		int64 col = 4;
+		string status = 5;
+		int64 currentLevel = 6;
+		string current = 7;
+		string currentMax = 8;
+	}
+	int64 count = 2;
+}
+
+message AdminWithdrawListRequest {
+	int64 page = 1;
+	string address = 2;
+}
+
+message AdminWithdrawListReply {
+	repeated List withdraw = 1;
+	message List {
+		string address = 5;
+		int64  id = 7;
+		string created_at = 1;
+		string amount = 2;
+		string relAmount = 6;
+		string type = 3;
+		string status=4;
+	}
+	int64 count = 2;
+}
+
+message AdminWithdrawRequest {
+}
+
+message AdminWithdrawReply {
+}
+
+message AdminWithdrawEthRequest {
+}
+
+message AdminWithdrawEthReply {
+}
+
+message AdminFeeRequest {
+}
+
+message AdminFeeReply {
+}
+
+message AdminAllRequest {
+}
+
+message AdminAllReply {
+	int64 todayTotalUser = 1;
+	int64 totalUser = 2;
+	string allBalance = 3;
+	string todayLocation = 4;
+	string allLocation = 5;
+	string todayWithdraw = 6;
+	string allWithdraw = 7;
+	string allReward = 8;
+	string allSystemRewardAndFee = 9;
+}
+
+message AdminUserRecommendRequest {
+	int64 user_id = 1;
+}
+
+message AdminUserRecommendReply {
+	repeated List users = 1;
+	message List {
+		int64 user_id = 4;
+		string address = 3;
+		int64  id = 2;
+		string created_at = 1;
+	}
+}
+
+message AdminMonthRecommendRequest {
+	string address = 1;
+	int64 page = 2;
+}
+
+message AdminMonthRecommendReply {
+	repeated List users = 1;
+	message List {
+		string address = 3;
+		string recommendAddress = 4;
+		int64  id = 2;
+		string created_at = 1;
+	}
+	int64 count = 2;
+}
+
+message AdminConfigRequest {
+	int64 userId = 1;
+	int64 page = 2;
+}
+
+message AdminConfigReply {
+	repeated List config = 1;
+	message List {
+		int64 id = 1;
+		string name = 3;
+		string value = 2;
+	}
+	int64 count = 2;
+}
+
+message AdminConfigUpdateRequest {
+	message SendBody{
+		int64 id = 1;
+		string value = 2;
+	}
+
+	SendBody send_body = 1;
+}
+
+message AdminConfigUpdateReply {
+
+}
