@@ -464,6 +464,8 @@ components:
                     type: string
                 locationTotalRow:
                     type: string
+                bnbAmount:
+                    type: string
         UserInfoReply_List:
             type: object
             properties:

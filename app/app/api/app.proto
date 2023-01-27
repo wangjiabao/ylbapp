@@ -204,6 +204,7 @@ message UserInfoReply {
 	string recommendTop = 37;
 	string locationTotalCol = 38;
 	string locationTotalRow = 39;
+	string bnbAmount = 40;
 }
 
 message RewardListRequest {
